@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRACE — AI-Powered Fraud Incident Evidence Organizer</title>
+  <meta name="description" content="From scattered evidence to one traceable incident.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1220'/%3E%3Cpath d='M12 44 L26 32 L38 38 L52 20' stroke='%2322D3EE' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='12' cy='44' r='4.5' fill='%2322D3EE'/%3E%3Ccircle cx='26' cy='32' r='4.5' fill='%2322D3EE'/%3E%3Ccircle cx='38' cy='38' r='4.5' fill='%2322D3EE'/%3E%3Ccircle cx='52' cy='20' r='4.5' fill='%2322D3EE'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <div id="drawer-root"></div>
+  <div id="toast-root"></div>
+  <noscript><p style="font-family:Inter,system-ui,sans-serif;color:#E6EEF8;background:#0B1220;max-width:34rem;margin:3rem auto;padding:2rem;border:1px solid #1F2A3D;border-radius:12px;text-align:center;">TRACE requires JavaScript. Please enable it to open the evidence organizer.</p></noscript>
+  <script>
+    // Boot guard: skip if app already booted; else show a readable error panel on script failure.
+    if (!window.__TRACE_BOOT__) {
+      window.addEventListener("error", function (e) {
+        if (window.__TRACE_BOOT__) return;
+        var el = document.getElementById("app");
+        if (!el || el.dataset.bootErr) return;
+        el.dataset.bootErr = "1";
+        el.innerHTML = "<div class=\"trace-boot-error\"><h1>TRACE failed to start</h1><p>" +
+          String(e.message || "Script error").replace(/[&<>]/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c];
+          }) + "</p><p class=\"trace-boot-hint\">Check that js/data.js and js/app.js exist next to index.html.</p></div>";
+      }, true);
+    }
+  </script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
